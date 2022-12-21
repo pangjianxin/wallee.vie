@@ -1,22 +1,14 @@
-<!-- <template>
-  <el-header class="layout-header">
-    <NavBar> </NavBar>
-  </el-header>
-</template> -->
-
 <template>
   <div class="welcome suspension">
-    <img
+    <el-image
       class="welcome-img"
-      :src="headerSvg"
+      :src="logo"
       style="width: 62px; height: 62px"
-    />
+    ></el-image>
     <div class="welcome-text">
-      <div class="welcome-title">
-        全国中小企业融资综合信用服务平台内蒙古包头站(包头市信易贷平台)
-      </div>
+      <div class="welcome-title">{{ appName }}</div>
       <div class="welcome-note">
-        NATIONAL SME FINANCING COMPREHENSIVE CREDIT SERVICE PLATFORM
+        {{ appEngName }}
       </div>
     </div>
     <div style="flex: auto"></div>
@@ -25,7 +17,7 @@
         <el-icon>
           <Phone></Phone>
         </el-icon>
-        技术支持/服务电话:5621822、13947208672
+        技术支持/服务电话:{{ contactInfo }}
       </span>
     </div>
   </div>
@@ -39,7 +31,10 @@
 import useConfig from "/@/store/modules/useConfig";
 import NavTabs from "/@/components/navBar/navTabs.vue";
 import NavMenus from "/@/components/navBar/navMenus.vue";
-import headerSvg from "/@/assets/img/logo.png";
+import logo from "/@/assets/img/logo_bg_w.png";
+const appName = import.meta.env["VITE_APP_NAME"];
+const appEngName = import.meta.env["VITE_APP_ENG_NAME"];
+const contactInfo = import.meta.env["VITE_CONTACT_INFO"];
 const config = useConfig();
 </script>
 
@@ -124,7 +119,7 @@ const config = useConfig();
     }
     .welcome-note {
       padding-top: 6px;
-      font-size: 1.6rem;
+      font-size: 1.25rem;
       font-weight: 600;
       // color: var(--ba-color-primary-light);
       // color: var(--el-text-color-primary);

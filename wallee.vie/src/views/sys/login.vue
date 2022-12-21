@@ -12,7 +12,7 @@
     </div>
     <div class="login">
       <div class="login-image">
-        <el-image :src="loginTitle"></el-image>
+        <!-- <el-image :src="loginTitle"></el-image> -->
       </div>
       <div class="login-box">
         <div class="head">
@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { onMounted, computed, onBeforeUnmount, ref } from "vue";
 import * as pageBubble from "/@/utils/pageBubble";
-import loginTitle from "/@/assets/img/login_title.png";
+import loginTitle from "/@/assets/img/logo_bg_w.png";
 import loginHeader from "/@/assets/img/login-header.png";
 import avatar from "/@/assets/img/avatar.png";
 import { useRouter } from "vue-router";

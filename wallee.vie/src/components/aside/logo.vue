@@ -1,17 +1,17 @@
 <template>
   <div class="layout-logo">
-    <img
+    <el-image
       v-if="!config.layout.menuCollapse"
       class="logo-img"
       :src="logo"
       alt="logo"
-    />
+    ></el-image>
     <div
       v-if="!config.layout.menuCollapse"
       :style="{ color: config.getColorVal('menuActiveColor') }"
       class="website-name"
     >
-      包头市信易贷平台机构端
+      {{ appName }}
     </div>
     <el-icon
       v-if="config.layout.layoutMode != 'Streamline'"
@@ -31,6 +31,7 @@
 import useConfig from "/@/store/modules/useConfig";
 import { Expand, Fold } from "@element-plus/icons-vue";
 import logo from "/@/assets/img/logo.png";
+const appName = import.meta.env["VITE_APP_NAME"];
 const config = useConfig();
 
 const onMenuCollapse = function () {
