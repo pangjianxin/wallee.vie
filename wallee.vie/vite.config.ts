@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import { resolve } from "path";
 import vue from "@vitejs/plugin-vue";
 
@@ -12,7 +12,9 @@ import Pages, { PageResolver } from "vite-plugin-pages";
 function pathResolve(dir: string) {
   return resolve(process.cwd(), ".", dir);
 }
+
 export default defineConfig(({ command, mode }) => {
+  let env = loadEnv(mode, process.cwd(), "");
   return {
     base: "./",
     plugins: [
@@ -68,7 +70,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       host: true,
       https: false,
-      port: 25002,
+      port: Number(env["VITE_PORT"]),
     },
   };
 });

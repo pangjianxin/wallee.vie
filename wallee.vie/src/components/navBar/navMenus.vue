@@ -46,17 +46,17 @@
             <img :src="imgurl" alt="" />
           </el-avatar>
           <div class="admin-name">
-            {{ isAuthenticated ? currentUser?.userName : "未登录" }}
+            {{ isTokenValid ? userInfo.preferred_username : "未登录" }}
           </div>
         </div>
       </template>
-      <div v-if="isAuthenticated">
+      <div v-if="isTokenValid">
         <div class="admin-info-base">
           <el-avatar :size="70" fit="fill">
             <img :src="imgurl" alt="" />
           </el-avatar>
           <div class="admin-info-other">
-            <div class="admin-info-name">{{ currentUser?.userName }}</div>
+            <div class="admin-info-name">{{ userInfo.preferred_username }}</div>
             <div class="admin-info-lasttime">
               {{ dayJs(new Date()).format("YYYY/MM/DD HH:MM") }}
             </div>
@@ -100,10 +100,7 @@ import message from "/@/components/navBar/message.vue";
 
 const configStore = useConfig();
 const router = useRouter();
-const oidcStore = useOidcStore();
-
-const appConfigStore = useAppConfigStore();
-const { currentUser, isAuthenticated } = storeToRefs(appConfigStore);
+const { userInfo, isTokenValid } = useOidcStore();
 
 const handleCommand = async (command: string) => {
   if (command === "logout") {

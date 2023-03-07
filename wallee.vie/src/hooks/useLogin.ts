@@ -25,16 +25,16 @@ export const useLogin = () => {
     phone_number: "",
     phone_verify_code: "",
     grant_type: "phone_verify",
-    client_id: "Financing_Vue_App",
-    scope: "openid profile Financing",
+    client_id: import.meta.env["VITE_OIDC_CLIENT_ID"],
+    scope: import.meta.env["VITE_OIDC_SCOPE"],
   });
 
   let passwordLoginForm = reactive<PasswordLogin>({
     username: "",
     password: "",
     grant_type: "password",
-    client_id: "Financing_Vue_App",
-    scope: "openid profile Financing",
+    client_id: import.meta.env["VITE_OIDC_CLIENT_ID"],
+    scope: import.meta.env["VITE_OIDC_SCOPE"],
   });
 
   let phoneNumberLoginFormRules = reactive<FormRules>({
@@ -94,6 +94,7 @@ export const useLogin = () => {
       },
     });
   }
+  
   function phoneNumberLogin(requestBody: PhoneNumberLogin): CancelablePromise<{
     access_token: string;
     token_type: string;

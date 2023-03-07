@@ -22,6 +22,7 @@
         show-password
         clearable
         prefix-icon="Lock"
+        @keydown.enter="passwordLoginF"
       >
       </el-input>
     </el-form-item>
@@ -51,11 +52,16 @@ import useOidcStore from "/@/store/modules/useOidcStore";
 import useAppConfigStore from "/@/store/modules/useApplicationConfigStore";
 import { useRouter } from "vue-router";
 
-const oidcStore = useOidcStore();
+const { storeTokenInfo, storeUserInfo } = useOidcStore();
 const appCofigStore = useAppConfigStore();
 const router = useRouter();
 let formSubmitting = ref(false);
-const { passwordLoginForm, passwordLoginFormRules, passwordLogin } = useLogin();
+const {
+  passwordLoginForm,
+  passwordLoginFormRules,
+  passwordLogin,
+  getUserInfo,
+} = useLogin();
 let formRef = ref<FormInstance>();
 
 function passwordLoginF() {
@@ -70,11 +76,10 @@ function passwordLoginF() {
     } else {
       try {
         formSubmitting.value = true;
-        let res = await passwordLogin(passwordLoginForm);
-        console.log(res);
-        oidcStore.storeAccessToken(res.access_token);
-        oidcStore.storeExpredAt(res.expires_in);
-        oidcStore.storeIdToken(res.id_token);
+        let tokenRes = await passwordLogin(passwordLoginForm);
+        storeTokenInfo(tokenRes);
+        let userRes = await getUserInfo();
+        storeUserInfo(userRes);
         await appCofigStore.initConfig();
         await router.push("/");
       } finally {

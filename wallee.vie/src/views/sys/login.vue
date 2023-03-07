@@ -37,11 +37,11 @@ import loginHeader from "/@/assets/img/login-header.png";
 import avatar from "/@/assets/img/avatar.png";
 import { useRouter } from "vue-router";
 import passwordLogin from "/@/views/sys/components/passwordLogin.vue";
-
-const router = useRouter();
+import useoidcStore from "/@/store/modules/useoidcStore";
 var bubbleTimer: NodeJS.Timer;
-
+const { clearState } = useoidcStore();
 onMounted(async () => {
+  clearState();
   bubbleTimer = setTimeout(() => {
     pageBubble.init();
   }, 1000);

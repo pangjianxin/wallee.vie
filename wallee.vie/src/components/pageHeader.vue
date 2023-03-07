@@ -30,8 +30,8 @@ let description = ref<string | null>();
 let router = useRouter();
 let route = useRoute();
 onMounted(() => {
-  title.value = route.meta.title ?? "";
-  description.value = route.meta.description ?? null;
+  title.value = (route.meta.title as string) ?? "";
+  description.value = (route.meta.description as string) ?? null;
 });
 
 function onBack() {

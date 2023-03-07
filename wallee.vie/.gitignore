@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 *.production
-*/openapi
 
 # Editor directories and files
 .vscode/*
