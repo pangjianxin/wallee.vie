@@ -60,6 +60,10 @@ const menus: MenuItem[] = reactive<MenuItem[]>([]);
 watchEffect(() => {
   generatedRoutes
     .filter((it) => it.meta?.visible === true)
+    .sort(
+      (prev, next) =>
+        (prev.meta?.order as number) - (next.meta?.order as number)
+    )
     .forEach((item, index) => {
       menus.push({
         icon: item.meta?.icon as string,
@@ -68,7 +72,6 @@ watchEffect(() => {
       });
     });
 });
-
 const verticalMenusScrollbarHeight = computed(() => {
   let menuTopBarHeight = 0;
   if (config.layout.menuShowTopBar) {
