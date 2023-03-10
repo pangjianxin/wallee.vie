@@ -7,7 +7,7 @@ export default defineStore(
   "appConfig",
   () => {
     const layout: Layout = reactive({
-      layoutMode: "Default",
+      layoutMode: "classic",
       // 是否暗黑模式
       isDark: false,
       /* 侧边菜单 */
@@ -31,7 +31,7 @@ export default defineStore(
       menuUniqueOpened: false,
       // 显示菜单栏顶栏(LOGO)
       menuShowTopBar: true,
-      
+
       /* 顶栏 */
       // 顶栏文字色
       headerBarTabColor: ["#000000", "#CFD3DC"],
@@ -56,13 +56,13 @@ export default defineStore(
         ? { idx: 1, color: "#1d1e1f", newColor: "#141414" }
         : { idx: 0, color: "#ffffff", newColor: "#f5f5f5" };
       if (
-        data == "Classic" &&
+        data == "classic" &&
         layout.headerBarBackground[tempValue.idx] == tempValue.color &&
         layout.headerBarTabActiveBackground[tempValue.idx] == tempValue.color
       ) {
         layout.headerBarTabActiveBackground[tempValue.idx] = tempValue.newColor;
       } else if (
-        data == "Default" &&
+        data == "vertical" &&
         layout.headerBarBackground[tempValue.idx] == tempValue.color &&
         layout.headerBarTabActiveBackground[tempValue.idx] == tempValue.newColor
       ) {
@@ -70,7 +70,7 @@ export default defineStore(
       }
     }
 
-    function setLayoutMode(data: string) {
+    function setLayoutMode(data: "classic" | "vertical") {
       layout.layoutMode = data;
       onSetLayoutColor(data);
     }

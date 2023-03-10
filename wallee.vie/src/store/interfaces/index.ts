@@ -2,7 +2,7 @@
 import { RouteRecordRaw, RouteLocationNormalized } from "vue-router";
 
 export interface Layout {
-  layoutMode: string;
+  layoutMode: "classic" | "vertical";
   isDark: boolean;
   menuWidth: number;
   menuDefaultIcon: string;
@@ -29,4 +29,3 @@ export interface NavTabs {
   tabsViewRoutes: RouteRecordRaw[];
   authNode: Map<string, string[]>;
 }
-

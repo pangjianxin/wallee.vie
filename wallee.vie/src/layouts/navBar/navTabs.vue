@@ -77,7 +77,7 @@ function onBack() {
   }
   &::-webkit-scrollbar-track {
     background: v-bind(
-      'config.layout.layoutMode == "Default" ? "none":config.getColorVal("headerBarBackground")'
+      'config.layout.layoutMode == "vertical" ? "none":config.getColorVal("headerBarBackground")'
     );
   }
   &:hover {

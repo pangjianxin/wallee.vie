@@ -1,40 +1,23 @@
 <template>
-  <el-container class="layout-container">
-    <Aside></Aside>
-    <el-container class="content-wrapper">
-      <Header></Header>
-      <el-main>
-        <router-view>
-          <template #default="{ Component, route }">
-            <transition name="move" mode="out-in">
-              <keep-alive v-if="isEnabled" :include="cachedComponentsName">
-                <component :is="Component" :key="route.path"></component>
-              </keep-alive>
-              <component v-else :is="Component" :key="route.path"> </component>
-            </transition>
-          </template>
-        </router-view>
-      </el-main>
-    </el-container>
-  </el-container>
+  <div>
+    <component :is="viewComponent" :key="route.path"></component>
+  </div>
 </template>
-<script lang="ts" setup>
+
+<script setup lang="ts">
+import { useRoute } from "vue-router";
 import { computed } from "vue";
-import Aside from "../components/aside/aside.vue";
-import useTagStore from "/@/store/modules/useTagsStore";
-import Header from "../components/header.vue";
-import { storeToRefs } from "pinia";
-import PageHeader from "/@/components/pageHeader.vue";
-const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
+import useConfig from "/@/store/modules/useConfig";
+import layoutVertical from "./layoutVertical.vue";
+import layoutClassic from "./layoutClassic.vue";
+const route = useRoute();
+const config = useConfig();
+let viewComponent = computed(() => {
+  return config.layout.layoutMode === "vertical"
+    ? layoutVertical
+    : layoutClassic;
+});
+console.log(config.layout.layoutMode);
 </script>
-<style scoped>
-.layout-container {
-  height: 100%;
-  width: 100%;
-}
-.content-wrapper {
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-</style>
+
+<style scoped></style>

@@ -23,7 +23,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.layout-aside-Default {
+.layout-aside-classic {
   background: var(--ba-bg-color-overlay);
   margin: 16px 0 16px 16px;
   height: calc(100vh - 32px);
@@ -33,9 +33,9 @@ export default defineComponent({
   transition: width 0.3s ease;
   width: v-bind(menuWidth);
 }
-.layout-aside-Classic {
+.layout-aside-vertical {
   background: var(--ba-bg-color-overlay);
-  margin: 0;
+  margin: 16px 0 16px 16px;
   height: 100vh;
   overflow: hidden;
   transition: width 0.3s ease;

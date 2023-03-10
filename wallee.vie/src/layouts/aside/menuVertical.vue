@@ -31,20 +31,13 @@
   </el-scrollbar>
 </template>
 <script setup lang="ts">
-import useAppConfigStore from "/@/store/modules/useApplicationConfigStore";
-import { useRouter } from "vue-router";
-import { storeToRefs } from "pinia";
-
-import { computed, onMounted, reactive, ref, watchEffect } from "vue";
+import { computed, reactive, ref, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import { MenuItem } from "/#/menu";
 import tree from "./tree.vue";
 import useConfig from "/@/store/modules/useConfig";
 import type { ElScrollbar } from "element-plus";
 import generatedRoutes from "~pages";
-
-const { isAuthenticated } = storeToRefs(useAppConfigStore());
-const router = useRouter();
 
 const verticalMenusRef = ref<InstanceType<typeof ElScrollbar>>();
 
@@ -77,7 +70,7 @@ const verticalMenusScrollbarHeight = computed(() => {
   if (config.layout.menuShowTopBar) {
     menuTopBarHeight = 50;
   }
-  if (config.layout.layoutMode == "Default") {
+  if (config.layout.layoutMode == "classic") {
     return "calc(100vh - " + (32 + menuTopBarHeight) + "px)";
   } else {
     return "calc(100vh - " + menuTopBarHeight + "px)";

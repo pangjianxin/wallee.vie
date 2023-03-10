@@ -20,6 +20,15 @@
         <FullScreen></FullScreen>
       </el-icon>
     </div>
+    <div class="nav-menu-item" @click="openThemeSettingDrawer">
+      <el-icon
+        :color="configStore.getColorVal('headerBarTabColor')"
+        class="nav-menu-icon"
+        size="18"
+      >
+        <Setting></Setting>
+      </el-icon>
+    </div>
     <div class="nav-menu-item">
       <el-icon
         :color="configStore.getColorVal('headerBarTabColor')"
@@ -77,30 +86,33 @@
         </div>
       </div>
     </el-popover>
+    <el-drawer v-model="themeSettingDrawer" title="布局设置" size="300px">
+      <themeSetting></themeSetting>
+    </el-drawer>
   </div>
 </template>
 
 <script setup lang="ts">
 import useConfig from "/@/store/modules/useConfig";
-
-import useAppConfigStore from "/@/store/modules/useApplicationConfigStore";
-import { storeToRefs } from "pinia";
 import imgurl from "/@/assets/img/avatar.png";
 import {
   Notification,
-  House,
   Message,
   FullScreen,
   Monitor,
+  Setting,
 } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 import useOidcStore from "/@/store/modules/useOidcStore";
 import dayJs from "dayjs";
-import message from "/@/components/navBar/message.vue";
+import message from "/@/layouts/navBar/message.vue";
+import { ref } from "vue";
+import themeSetting from "/@/layouts/themeSettings/index.vue";
 
 const configStore = useConfig();
 const router = useRouter();
 const { userInfo, isTokenValid } = useOidcStore();
+let themeSettingDrawer = ref(false);
 
 const handleCommand = async (command: string) => {
   if (command === "logout") {
@@ -110,6 +122,13 @@ const handleCommand = async (command: string) => {
     router.push("/login");
   }
 };
+
+const openThemeSettingDrawer = () => {
+  themeSettingDrawer.value = true;
+};
+// const closeThemeSettingDrawer = () => {
+//   themeSettingDrawer.value = false;
+// };
 </script>
 
 <style scoped lang="scss">
