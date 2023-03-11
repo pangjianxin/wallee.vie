@@ -60,8 +60,7 @@ const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
 .nav-bar {
   display: flex;
   height: 50px;
-
-
+  margin-bottom: 16px;
   :deep(.nav-tabs) {
     display: flex;
     height: 100%;
