@@ -1,5 +1,4 @@
 <template>
-  <div>404........</div>
   <div>
     <router-view></router-view>
   </div>

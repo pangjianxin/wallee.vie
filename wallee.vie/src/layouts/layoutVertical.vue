@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-container">
+  <el-container>
     <Aside></Aside>
     <el-container class="content-wrapper">
       <Header></Header>
@@ -23,22 +23,17 @@
   </el-container>
 </template>
 <script lang="ts" setup>
-import { computed } from "vue";
 import Aside from "/@/layouts/aside/aside.vue";
 import useTagStore from "/@/store/modules/useTagsStore";
 import Header from "./header.vue";
 import { storeToRefs } from "pinia";
 import navTabs from "/@/layouts/navBar/navTabs.vue";
 import navMenu from "/@/layouts/navBar/navMenus.vue";
-import useConfig from "/@/store/modules/useConfig";
+import useThemeStore from "/@/store/modules/useThemeStore";
 const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
-const config = useConfig();
+const theme = useThemeStore();
 </script>
 <style scoped lang="scss">
-.layout-container {
-  height: 100%;
-  width: 100%;
-}
 .content-wrapper {
   flex-direction: column;
   width: 100%;
@@ -46,8 +41,9 @@ const config = useConfig();
 }
 .nav-bar {
   display: flex;
+  align-items: center;
   height: 50px;
-  margin-bottom: 16px;
+  margin-bottom: var(--ba-main-space);
   :deep(.nav-tabs) {
     display: flex;
     height: 100%;
@@ -61,7 +57,7 @@ const config = useConfig();
       z-index: 1;
       user-select: none;
       opacity: 0.7;
-      color: v-bind('config.getColorVal("headerBarTabColor")');
+      color: v-bind('theme.getColorVal("navMenuTabColor")');
       .close-icon {
         padding: 2px;
         margin: 2px 0 0 4px;
@@ -72,7 +68,7 @@ const config = useConfig();
         border-radius: 50%;
       }
       &.active {
-        color: v-bind('config.getColorVal("headerBarTabActiveColor")');
+        color: v-bind('theme.getColorVal("navMenuTabActiveColor")');
       }
       &:hover {
         opacity: 1;
@@ -83,7 +79,7 @@ const config = useConfig();
       height: 40px;
       border-radius: var(--el-border-radius-base);
       background-color: v-bind(
-        'config.getColorVal("headerBarTabActiveBackground")'
+        'theme.getColorVal("navMenuTabActiveBackground")'
       );
       box-shadow: var(--el-box-shadow-light);
       transition: all 0.2s;

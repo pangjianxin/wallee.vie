@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig, loadEnv, preprocessCSS } from "vite";
 import { resolve } from "path";
 import vue from "@vitejs/plugin-vue";
 
@@ -55,6 +55,13 @@ export default defineConfig(({ command, mode }) => {
         exclude: ["src/views/sys/oidc*.vue"],
       }),
     ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "/@/styles/var.scss";`,
+        },
+      },
+    },
     resolve: {
       alias: [
         {

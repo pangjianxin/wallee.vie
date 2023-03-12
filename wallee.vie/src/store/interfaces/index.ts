@@ -5,20 +5,22 @@ export interface Layout {
   layoutMode: "classic" | "vertical";
   isDark: boolean;
   menuWidth: number;
-  menuDefaultIcon: string;
   menuCollapse: boolean;
   menuUniqueOpened: boolean;
-  menuShowTopBar: boolean;
   menuBackground: string[];
   menuColor: string[];
   menuActiveBackground: string[];
   menuActiveColor: string[];
   menuTopBarBackground: string[];
-  headerBarTabColor: string[];
-  headerBarBackground: string[];
-  headerBarHoverBackground: string[];
-  headerBarTabActiveBackground: string[];
-  headerBarTabActiveColor: string[];
+
+  baseBackground: string[];
+  baseTextColor: string[];
+  
+  navMenuTabColor: string[];
+  navMenuBackground: string[];
+  navMenuHoverBackground: string[];
+  navMenuTabActiveBackground: string[];
+  navMenuTabActiveColor: string[];
 }
 
 export interface NavTabs {

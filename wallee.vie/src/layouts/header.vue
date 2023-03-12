@@ -1,53 +1,45 @@
 <template>
-  <div>
-    <div class="welcome suspension">
-      <el-image
-        class="welcome-img"
-        :src="logo"
-        style="width: 62px; height: 62px"
-      ></el-image>
-      <div class="welcome-text">
-        <div class="welcome-title">
-          {{ appName }}
-        </div>
-        <div class="welcome-note">
-          {{ appEngName }}
-        </div>
+  <div class="welcome suspension">
+    <el-image class="welcome-img" :src="logo" style="width: 62px; height: 62px">
+    </el-image>
+    <div class="welcome-text">
+      <div class="welcome-title">
+        {{ appName }}
       </div>
-      <div style="flex: auto"></div>
-      <div class="welcome-suport">
-        <span>
-          <el-icon>
-            <Phone></Phone>
-          </el-icon>
-          技术支持/服务电话:{{ contactInfo }}
-        </span>
+      <div class="welcome-note">
+        {{ appEngName }}
       </div>
+    </div>
+    <div style="flex: auto"></div>
+    <div class="welcome-suport">
+      <span>
+        <el-icon>
+          <Phone></Phone>
+        </el-icon>
+        技术支持/服务电话:{{ contactInfo }}
+      </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import useConfig from "/@/store/modules/useConfig";
+import useThemeStore from "/@/store/modules/useThemeStore";
 import logo from "/@/assets/img/logo_bg_w.png";
 import { computed } from "vue";
 const appName = import.meta.env["VITE_APP_NAME"];
 const appEngName = import.meta.env["VITE_APP_ENG_NAME"];
 const contactInfo = import.meta.env["VITE_CONTACT_INFO"];
-const config = useConfig();
-let leftAndRightMargin = computed(() =>
-  config.$state.layout.layoutMode == "vertical" ? "16px" : "0px"
+const theme = useThemeStore();
+
+//TODO:can we use the variable in /@/styles/ver.scss instead of constant?
+let margin = computed(() =>
+  theme.layout.layoutMode == "vertical" ? "16px" : "0px"
 );
 </script>
 
 <style lang="scss" scoped>
-.layout-header {
-  height: auto;
-  padding: 0;
-}
 .welcome {
-  // background: #e1eaf9;
-  background: #2d63dd;
+  background: v-bind('theme.getColorVal("baseBackground")');
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -55,10 +47,9 @@ let leftAndRightMargin = computed(() =>
   box-shadow: 0 0 30px 0 rgba(82, 63, 105, 0.05);
   margin-top: var(--ba-main-space);
   margin-bottom: 0;
-  margin-right: v-bind(leftAndRightMargin);
-  margin-left: v-bind(leftAndRightMargin);
-  // margin-left: var(--ba-main-space);
-  // margin-right: var(--ba-main-space);
+  margin-right: v-bind(margin);
+  margin-left: v-bind(margin);
+
   .welcome-img {
     height: 100px;
     margin-right: 10px;
@@ -73,22 +64,20 @@ let leftAndRightMargin = computed(() =>
       font-size: 2rem;
       font-weight: 600;
       line-height: 30px;
-      // color: var(--ba-color-primary-light);
-      color: white;
+      color: v-bind('theme.getColorVal("baseTextColor")');
     }
     .welcome-note {
       padding-top: 6px;
       font-size: 1.25rem;
       font-weight: 600;
-      // color: var(--ba-color-primary-light);
+      color: v-bind('theme.getColorVal("baseTextColor")');
       // color: var(--el-text-color-primary);
-      color: white;
     }
   }
   .welcome-suport {
     font-size: 14px;
     font-weight: 400;
-    color: white;
+    color: v-bind('theme.getColorVal("baseTextColor")');
     justify-self: end;
     align-self: end;
   }

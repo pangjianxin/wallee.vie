@@ -25,13 +25,13 @@
 import useTagsStore from "/@/store/modules/useTagsStore";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
-import useConfig from "/@/store/modules/useConfig";
+import useThemeStore from "/@/store/modules/useThemeStore";
 import { reactive, ref } from "vue";
 import { Close } from "@element-plus/icons-vue";
 import { useTemplateRefsList } from "@vueuse/core";
 import { router } from "/@/router";
 
-const config = useConfig();
+const theme = useThemeStore();
 const tagsStore = useTagsStore();
 let route = useRoute();
 
@@ -63,8 +63,8 @@ function onBack() {
   width: 100%;
   margin-right: var(--ba-main-space);
   scrollbar-width: none;
-  background: white;
-  border-bottom: solid #2d63dd;
+  background: v-bind('theme.getColorVal("navMenuBackground")');
+  border-bottom: solid v-bind('theme.getColorVal("baseBackground")');
 
   &::-webkit-scrollbar {
     height: 5px;
@@ -77,7 +77,7 @@ function onBack() {
   }
   &::-webkit-scrollbar-track {
     background: v-bind(
-      'config.layout.layoutMode == "vertical" ? "none":config.getColorVal("headerBarBackground")'
+      'theme.layout.layoutMode == "vertical" ? "none":theme.getColorVal("navMenuBackground")'
     );
   }
   &:hover {
@@ -91,8 +91,8 @@ function onBack() {
   height: 40px;
 }
 .active {
-  background: v-bind('config.getColorVal("headerBarTabActiveBackground")');
-  color: v-bind('config.getColorVal("headerBarTabActiveColor")');
+  background: v-bind('theme.getColorVal("navMenuTabActiveBackground")');
+  color: v-bind('theme.getColorVal("navMenuTabActiveColor")');
   box-shadow: var(--el-box-shadow-light);
 }
 </style>

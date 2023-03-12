@@ -2,9 +2,9 @@
   <el-scrollbar ref="verticalMenusRef" class="vertical-menus-scrollbar">
     <el-menu
       :default-active="onRoutes"
-      :collapse="config.layout.menuCollapse"
+      :collapse="theme.layout.menuCollapse"
       :collapse-transition="false"
-      :unique-opened="config.layout.menuUniqueOpened"
+      :unique-opened="theme.layout.menuUniqueOpened"
       router
       class="layouts-menu-vertical"
     >
@@ -35,7 +35,7 @@ import { computed, reactive, ref, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import { MenuItem } from "/#/menu";
 import tree from "./tree.vue";
-import useConfig from "/@/store/modules/useConfig";
+import useThemeStore from "/@/store/modules/useThemeStore";
 import type { ElScrollbar } from "element-plus";
 import generatedRoutes from "~pages";
 
@@ -46,7 +46,7 @@ const onRoutes = computed(() => {
   return route.path;
 });
 
-const config = useConfig();
+const theme = useThemeStore();
 
 const menus: MenuItem[] = reactive<MenuItem[]>([]);
 
@@ -66,11 +66,8 @@ watchEffect(() => {
     });
 });
 const verticalMenusScrollbarHeight = computed(() => {
-  let menuTopBarHeight = 0;
-  if (config.layout.menuShowTopBar) {
-    menuTopBarHeight = 50;
-  }
-  if (config.layout.layoutMode == "classic") {
+  let menuTopBarHeight = 50;
+  if (theme.layout.layoutMode == "classic") {
     return "calc(100vh - " + (32 + menuTopBarHeight) + "px)";
   } else {
     return "calc(100vh - " + menuTopBarHeight + "px)";
@@ -81,12 +78,12 @@ const verticalMenusScrollbarHeight = computed(() => {
 <style>
 .vertical-menus-scrollbar {
   height: v-bind(verticalMenusScrollbarHeight);
-  background-color: v-bind('config.getColorVal("menuBackground")');
+  background-color: v-bind('theme.getColorVal("menuBackground")');
 }
 .layouts-menu-vertical {
   border: 0;
-  --el-menu-bg-color: v-bind('config.getColorVal("menuBackground")');
-  --el-menu-text-color: v-bind('config.getColorVal("menuColor")');
-  --el-menu-active-color: v-bind('config.getColorVal("menuActiveColor")');
+  --el-menu-bg-color: v-bind('theme.getColorVal("menuBackground")');
+  --el-menu-text-color: v-bind('theme.getColorVal("menuColor")');
+  --el-menu-active-color: v-bind('theme.getColorVal("menuActiveColor")');
 }
 </style>

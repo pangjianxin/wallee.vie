@@ -1,41 +1,40 @@
 <template>
   <div class="layout-logo">
     <el-image
-      v-if="!config.layout.menuCollapse"
+      v-if="!theme.layout.menuCollapse"
       class="logo-img"
       :src="logo"
       alt="logo"
-    ></el-image>
+    >
+    </el-image>
     <div
-      v-if="!config.layout.menuCollapse"
-      :style="{ color: config.getColorVal('menuActiveColor') }"
+      v-if="!theme.layout.menuCollapse"
+      :style="{ color: theme.getColorVal('baseTextColor') }"
       class="website-name"
     >
       {{ appName }}
     </div>
     <el-icon
-      v-if="config.layout.layoutMode != 'Streamline'"
       @click="onMenuCollapse"
-      :class="config.layout.menuCollapse ? 'unfold' : ''"
-      :color="config.getColorVal('menuActiveColor')"
+      :class="theme.layout.menuCollapse ? 'unfold' : 'fold'"
+      :color="theme.getColorVal('baseTextColor')"
       :size="25"
-      class="fold"
     >
-      <Expand v-if="config.layout.menuCollapse" />
-      <Fold v-else></Fold>
+      <Expand v-if="theme.layout.menuCollapse" />
+      <Fold v-else />
     </el-icon>
   </div>
 </template>
 
 <script setup lang="ts">
-import useConfig from "/@/store/modules/useConfig";
+import useThemeStore from "/@/store/modules/useThemeStore";
 import { Expand, Fold } from "@element-plus/icons-vue";
 import logo from "/@/assets/img/logo.png";
 const appName = import.meta.env["VITE_APP_NAME"];
-const config = useConfig();
+const theme = useThemeStore();
 
 const onMenuCollapse = function () {
-  config.setLayout("menuCollapse", !config.layout.menuCollapse);
+  theme.setMenuCollapse(!theme.layout.menuCollapse);
 };
 </script>
 
@@ -48,9 +47,7 @@ const onMenuCollapse = function () {
   justify-content: center;
   box-sizing: border-box;
   padding: 10px;
-  background: v-bind(
-    'config.layout.layoutMode != "Streamline" ?  config.getColorVal("menuTopBarBackground"):"transparent"'
-  );
+  background: v-bind('theme.getColorVal("baseBackground")');
 }
 .logo-img {
   width: 28px;

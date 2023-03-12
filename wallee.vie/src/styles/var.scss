@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use 'mixins' as *;
+@use 'mixins' ;
 
 // 后台主体窗口左右间距
 $main-space: 16px;
@@ -25,8 +25,8 @@ $border-color: map.merge(
 );
 
 :root {
-    @include set-css-var-value('main-space', $main-space);
-    @include set-css-var-value('color-primary-light', $primary-light);
-    @include set-component-css-var('bg-color', $bg-color);
-    @include set-component-css-var('border-color', $border-color);
+    @include mixins.set-css-var-value('main-space', $main-space);
+    @include mixins.set-css-var-value('color-primary-light', $primary-light);
+    @include mixins.set-component-css-var('bg-color', $bg-color);
+    @include mixins.set-component-css-var('border-color', $border-color);
 }

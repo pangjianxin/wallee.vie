@@ -1,4 +1,4 @@
-export const STORE_CONFIG = "storeConfig_v2";
+export const STORE_CONFIG = "appTheme";
 // 后台标签页
 export const STORE_TAB_VIEW_CONFIG = "storeTabViewConfig";
 

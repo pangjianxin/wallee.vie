@@ -7,17 +7,16 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { computed } from "vue";
-import useConfig from "/@/store/modules/useConfig";
+import useThemeStore from "../store/modules/useThemeStore";
 import layoutVertical from "./layoutVertical.vue";
 import layoutClassic from "./layoutClassic.vue";
 const route = useRoute();
-const config = useConfig();
+const theme = useThemeStore();
 let viewComponent = computed(() => {
-  return config.layout.layoutMode === "vertical"
+  return theme.layout.layoutMode === "vertical"
     ? layoutVertical
     : layoutClassic;
 });
-console.log(config.layout.layoutMode);
 </script>
 
 <style scoped></style>

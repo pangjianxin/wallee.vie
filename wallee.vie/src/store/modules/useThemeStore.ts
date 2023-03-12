@@ -4,10 +4,10 @@ import { STORE_CONFIG } from "/@/store/consts/cacheKey";
 import type { Layout } from "/@/store/interfaces";
 
 export default defineStore(
-  "appConfig",
+  "appTheme",
   () => {
     const layout: Layout = reactive({
-      layoutMode: "classic",
+      layoutMode: "vertical",
       // 是否暗黑模式
       isDark: false,
       /* 侧边菜单 */
@@ -31,18 +31,20 @@ export default defineStore(
       menuUniqueOpened: false,
       // 显示菜单栏顶栏(LOGO)
       menuShowTopBar: true,
-
+      // 最顶部系统标题栏设置
+      baseBackground: ["#F56C6C", "#F56C6C"],
+      baseTextColor: ["#FFFFFF", "#FFFFFF"],
       /* 顶栏 */
-      // 顶栏文字色
-      headerBarTabColor: ["#000000", "#CFD3DC"],
-      // 顶栏激活项背景色
-      headerBarTabActiveBackground: ["#ffffff", "#1d1e1f"],
-      // 顶栏激活项文字色
-      headerBarTabActiveColor: ["#000000", "#409EFF"],
       // 顶栏背景色
-      headerBarBackground: ["#ffffff", "#1d1e1f"],
+      navMenuBackground: ["#FFFFFF", "#FFFFFF"],
       // 顶栏悬停时背景色
-      headerBarHoverBackground: ["#f5f5f5", "#18222c"],
+      navMenuHoverBackground: ["#E5EAF3", "#18222c"],
+      // 顶栏文字色/图标
+      navMenuTabColor: ["#F56C6C", "#CFD3DC"],
+      // 顶栏激活项背景色
+      navMenuTabActiveBackground: ["#ffffff", "#1d1e1f"],
+      // 顶栏激活项文字色
+      navMenuTabActiveColor: ["#000000", "#409EFF"],
     });
 
     function menuWidth() {
@@ -50,34 +52,23 @@ export default defineStore(
       return layout.menuCollapse ? "64px" : layout.menuWidth + "px";
     }
 
-    function onSetLayoutColor(data = layout.layoutMode) {
-      // 切换布局时，如果是为默认配色方案，对菜单激活背景色重新赋值
-      const tempValue = layout.isDark
-        ? { idx: 1, color: "#1d1e1f", newColor: "#141414" }
-        : { idx: 0, color: "#ffffff", newColor: "#f5f5f5" };
-      if (
-        data == "classic" &&
-        layout.headerBarBackground[tempValue.idx] == tempValue.color &&
-        layout.headerBarTabActiveBackground[tempValue.idx] == tempValue.color
-      ) {
-        layout.headerBarTabActiveBackground[tempValue.idx] = tempValue.newColor;
-      } else if (
-        data == "vertical" &&
-        layout.headerBarBackground[tempValue.idx] == tempValue.color &&
-        layout.headerBarTabActiveBackground[tempValue.idx] == tempValue.newColor
-      ) {
-        layout.headerBarTabActiveBackground[tempValue.idx] = tempValue.color;
-      }
+    function setLayoutColor(
+      data: keyof Layout,
+      value: string,
+      isDark: boolean = false
+    ) {
+      const index = isDark ? 1 : 0;
+      (layout[data] as string[])[index] = value;
+    }
+
+    function setMenuCollapse(data: boolean) {
+      layout.menuCollapse = data;
     }
 
     function setLayoutMode(data: "classic" | "vertical") {
       layout.layoutMode = data;
-      onSetLayoutColor(data);
     }
 
-    function setLayout(name: keyof Layout, value: any) {
-      layout[name] = value as never;
-    }
     function getColorVal(name: keyof Layout): string {
       const colors = layout[name] as string[];
       if (layout.isDark) {
@@ -89,13 +80,14 @@ export default defineStore(
     return {
       layout,
       menuWidth,
-      onSetLayoutColor,
+      setLayoutColor,
       setLayoutMode,
-      setLayout,
       getColorVal,
+      setMenuCollapse,
     };
   },
   {
-    persist: { key: STORE_CONFIG },
+    // persist: { key: STORE_CONFIG },
+    persist: false,
   }
 );

@@ -1,47 +1,22 @@
 <template>
-  <div class="nav-menus" :class="configStore.layout.layoutMode">
+  <div class="nav-menus" :class="theme.layout.layoutMode">
     <div class="nav-menu-item">
       <router-link class="h100 ba-center" :title="'首页'" to="/">
-        <el-icon
-          :color="configStore.getColorVal('headerBarTabColor')"
-          class="nav-menu-icon"
-          size="18"
-        >
+        <el-icon class="nav-menu-icon" size="18">
           <Monitor></Monitor>
         </el-icon>
       </router-link>
     </div>
     <div class="nav-menu-item">
-      <el-icon
-        :color="configStore.getColorVal('headerBarTabColor')"
-        class="nav-menu-icon"
-        size="18"
-      >
+      <el-icon class="nav-menu-icon" size="18">
         <FullScreen></FullScreen>
       </el-icon>
     </div>
     <div class="nav-menu-item" @click="openThemeSettingDrawer">
-      <el-icon
-        :color="configStore.getColorVal('headerBarTabColor')"
-        class="nav-menu-icon"
-        size="18"
-      >
+      <el-icon class="nav-menu-icon" size="18">
         <Setting></Setting>
       </el-icon>
     </div>
-    <div class="nav-menu-item">
-      <el-icon
-        :color="configStore.getColorVal('headerBarTabColor')"
-        class="nav-menu-icon"
-        size="18"
-      >
-        <Notification></Notification>
-      </el-icon>
-    </div>
-    <div class="nav-menu-item">
-      <message></message>
-    </div>
-
     <el-popover
       placement="bottom-end"
       :hide-after="0"
@@ -93,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import useConfig from "/@/store/modules/useConfig";
+import useThemeStore from "../../store/modules/useThemeStore";
 import imgurl from "/@/assets/img/avatar.png";
 import {
   Notification,
@@ -105,11 +80,10 @@ import {
 import { useRouter } from "vue-router";
 import useOidcStore from "/@/store/modules/useOidcStore";
 import dayJs from "dayjs";
-import message from "/@/layouts/navBar/message.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import themeSetting from "/@/layouts/themeSettings/index.vue";
 
-const configStore = useConfig();
+const theme = useThemeStore();
 const router = useRouter();
 const { userInfo, isTokenValid } = useOidcStore();
 let themeSettingDrawer = ref(false);
@@ -126,9 +100,9 @@ const handleCommand = async (command: string) => {
 const openThemeSettingDrawer = () => {
   themeSettingDrawer.value = true;
 };
-// const closeThemeSettingDrawer = () => {
-//   themeSettingDrawer.value = false;
-// };
+const headerBarBackground = computed(() => {
+  return theme.getColorVal("navMenuBackground");
+});
 </script>
 
 <style scoped lang="scss">
@@ -141,9 +115,9 @@ const openThemeSettingDrawer = () => {
   align-items: center;
   height: 100%;
   margin-left: auto;
-  background-color: v-bind('configStore.getColorVal("headerBarBackground")');
+  background-color: v-bind('theme.getColorVal("navMenuBackground")');
   overflow: hidden;
-  border-bottom: solid #2d63dd;
+  border-bottom: solid v-bind('theme.getColorVal("baseBackground")');
   .nav-menu-item {
     height: 100%;
     width: 40px;
@@ -153,7 +127,7 @@ const openThemeSettingDrawer = () => {
     cursor: pointer;
     .nav-menu-icon {
       box-sizing: content-box;
-      color: v-bind('configStore.getColorVal("headerBarTabColor")');
+      color: v-bind('theme.getColorVal("navMenuTabColor")');
     }
     &:hover {
       .icon {
@@ -168,8 +142,7 @@ const openThemeSettingDrawer = () => {
     align-items: center;
     cursor: pointer;
     user-select: none;
-    color: v-bind('configStore.getColorVal("headerBarTabColor")');
-    background: white;
+    color: v-bind('theme.getColorVal("navMenuTabColor")');
   }
   .admin-name {
     padding-left: 6px;
@@ -177,9 +150,9 @@ const openThemeSettingDrawer = () => {
   }
   .nav-menu-item:hover,
   .admin-info:hover,
-  .nav-menu-item.hover,
-  .admin-info.hover {
-    background: v-bind('configStore.getColorVal("headerBarHoverBackground")');
+  .nav-menu-item:hover,
+  .admin-info:hover {
+    background: v-bind('theme.getColorVal("navMenuHoverBackground")');
   }
 }
 .dropdown-menu-box :deep(.el-dropdown-menu__item) {
