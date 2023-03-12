@@ -16,7 +16,7 @@ const theme = useThemeStore();
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "aside",
+  name: "layout-aside",
 });
 </script>
 
