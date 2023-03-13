@@ -14,7 +14,9 @@
             <component :is="item.icon"></component>
           </el-icon>
           <template #title>
-            <span>{{ item.title }}</span>
+            <span :style="{ color: theme.getColorVal('navMenuTabColor') }">{{
+              item.title
+            }}</span>
           </template>
         </el-menu-item>
         <el-sub-menu v-else :index="item.title ?? item.path">
@@ -22,7 +24,9 @@
             <el-icon>
               <component :is="item.icon"></component>
             </el-icon>
-            <span>{{ item.title }}</span>
+            <span :style="{ color: theme.getColorVal('navMenuTabColor') }">
+              {{ item.title }}
+            </span>
           </template>
           <tree :items="item.children"></tree>
         </el-sub-menu>

@@ -53,7 +53,6 @@ export default defineStore(
     });
 
     const storeTokenInfo = (token: any) => {
-      console.log(Number(undefined));
       tokenInfo.access_token = token.access_token;
       let expires_at = Date.now() + Number(token.expires_in) * 1000;
       tokenInfo.expires_at = expires_at;
