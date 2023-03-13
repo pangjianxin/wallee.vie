@@ -7,7 +7,7 @@
       </el-breadcrumb>
     </template>
     <template #content>
-      <div class="ba-center">
+      <div class="flx-center">
         <el-avatar :size="32" :src="logo" />
         <span class="text-large font-600 mr-3">&nbsp;{{ title }}&nbsp;</span>
         <el-tag>

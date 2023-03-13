@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container ba-center">
+  <div class="login-container flx-center">
     <div class="login-box">
       <div class="login-left">
         <img :src="bg" alt="login" />

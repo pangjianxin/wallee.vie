@@ -1,7 +1,7 @@
 <template>
   <div class="nav-menus" :class="theme.layout.layoutMode">
     <div class="nav-menu-item">
-      <router-link class="h100 ba-center" :title="'首页'" to="/">
+      <router-link class="h100 flx-center" :title="'首页'" to="/">
         <el-icon class="nav-menu-icon" size="18">
           <Monitor></Monitor>
         </el-icon>
