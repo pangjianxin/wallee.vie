@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 import { defineStore } from "pinia";
-import { STORE_CONFIG } from "/@/store/consts/cacheKey";
+import { STORE_THEME } from "/@/store/consts/cacheKey";
 import type { Layout } from "/@/store/interfaces";
 
 export default defineStore(
@@ -22,7 +22,7 @@ export default defineStore(
       // 侧边菜单顶栏背景色
       menuTopBarBackground: ["#fcfcfc", "#1d1e1f"],
       // 侧边菜单宽度(展开时)，单位px
-      menuWidth: 260,
+      menuWidth: 180,
       // 侧边菜单项默认图标
       menuDefaultIcon: "Minus",
       // 是否水平折叠收起菜单
@@ -52,12 +52,8 @@ export default defineStore(
       return layout.menuCollapse ? "64px" : layout.menuWidth + "px";
     }
 
-    function setLayoutColor(
-      data: keyof Layout,
-      value: string,
-      isDark: boolean = false
-    ) {
-      const index = isDark ? 1 : 0;
+    function setLayoutColor(data: keyof Layout, value: string) {
+      const index = layout.layoutMode === "vertical" ? 1 : 0;
       (layout[data] as string[])[index] = value;
     }
 
@@ -87,7 +83,9 @@ export default defineStore(
     };
   },
   {
-    // persist: { key: STORE_CONFIG },
-    persist: false,
+    persist: {
+      key: STORE_THEME,
+      storage: window.sessionStorage,
+    },
   }
 );

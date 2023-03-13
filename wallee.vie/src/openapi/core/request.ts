@@ -347,7 +347,7 @@ export const request = <T>(
             // const router = useRouter();
             // console.log(router);
             // router.push("/login");
-            window.location.href = "/login";
+            window.location.href = "/sys/login";
             break;
           case 403:
             ElNotification({
