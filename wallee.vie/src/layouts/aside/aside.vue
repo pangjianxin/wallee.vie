@@ -24,12 +24,12 @@ export default defineComponent({
 .layout-aside-classic {
   background: var(--ba-bg-color-overlay);
   margin: var(--ba-main-space) 0 var(--ba-main-space) var(--ba-main-space);
-  height: calc(100vh - 32px);
+  height: v-bind("theme.menuHeight");
   box-shadow: var(--el-box-shadow-light);
   border-radius: var(--el-border-radius-base);
   overflow: hidden;
   transition: width 0.3s ease;
-  width: v-bind("theme.menuWidth()");
+  width: v-bind("theme.menuWidth");
 }
 .layout-aside-vertical {
   background: var(--ba-bg-color-overlay);
@@ -37,6 +37,6 @@ export default defineComponent({
   height: 100vh;
   overflow: hidden;
   transition: width 0.3s ease;
-  width: v-bind("theme.menuWidth()");
+  width: v-bind("theme.menuWidth");
 }
 </style>

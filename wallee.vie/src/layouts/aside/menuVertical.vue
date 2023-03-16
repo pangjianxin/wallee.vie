@@ -54,21 +54,25 @@ const theme = useThemeStore();
 
 const menus: MenuItem[] = reactive<MenuItem[]>([]);
 
-watchEffect(() => {
-  generatedRoutes
-    .filter((it) => it.meta?.visible === true)
-    .sort(
-      (prev, next) =>
-        (prev.meta?.order as number) - (next.meta?.order as number)
-    )
-    .forEach((item, index) => {
-      menus.push({
-        icon: item.meta?.icon as string,
-        path: item.path,
-        title: item.meta?.title as string,
-      });
-    });
-});
+for (let i = 0; i < 22; i++) {
+  menus.push({ icon: "User", path: "/user", title: "用户管理" });
+}
+
+// watchEffect(() => {
+//   generatedRoutes
+//     .filter((it) => it.meta?.visible === true)
+//     .sort(
+//       (prev, next) =>
+//         (prev.meta?.order as number) - (next.meta?.order as number)
+//     )
+//     .forEach((item, index) => {
+//       menus.push({
+//         icon: item.meta?.icon as string,
+//         path: item.path,
+//         title: item.meta?.title as string,
+//       });
+//     });
+// });
 const verticalMenusScrollbarHeight = computed(() => {
   let menuTopBarHeight = 50;
   if (theme.layout.layoutMode == "classic") {

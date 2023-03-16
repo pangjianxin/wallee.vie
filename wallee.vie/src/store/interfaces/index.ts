@@ -15,7 +15,9 @@ export interface Layout {
 
   baseBackground: string[];
   baseTextColor: string[];
-  
+  elHeaderHeight: number;
+  elMainHeight: number;
+
   navMenuTabColor: string[];
   navMenuBackground: string[];
   navMenuHoverBackground: string[];

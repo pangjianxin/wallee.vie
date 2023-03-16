@@ -2,6 +2,7 @@ import { reactive } from "vue";
 import { defineStore } from "pinia";
 import { STORE_THEME } from "/@/store/consts/cacheKey";
 import type { Layout } from "/@/store/interfaces";
+import { computed } from "vue";
 
 export default defineStore(
   "appTheme",
@@ -34,6 +35,8 @@ export default defineStore(
       // 最顶部系统标题栏设置
       baseBackground: ["#F56C6C", "#F56C6C"],
       baseTextColor: ["#FFFFFF", "#FFFFFF"],
+      elHeaderHeight: 10,
+      elMainHeight: 90,
       /* 顶栏 */
       // 顶栏背景色
       navMenuBackground: ["#FFFFFF", "#FFFFFF"],
@@ -47,22 +50,31 @@ export default defineStore(
       navMenuTabActiveColor: ["#000000", "#409EFF"],
     });
 
-    function menuWidth() {
+    let menuWidth = computed(() => {
       // 菜单是否折叠
       return layout.menuCollapse ? "64px" : layout.menuWidth + "px";
-    }
+    });
+
+    let menuHeight = computed(() => {
+      switch (layout.layoutMode) {
+        case "classic":
+          return `${96 - layout.elHeaderHeight}vh`;
+        case "vertical":
+          return `90vh`;
+      }
+    });
+
+    let elHeaderHeight = computed(() => {
+      return layout.elHeaderHeight + "vh";
+    });
+
+    let elMainHeight = computed(() => {
+      return layout.elMainHeight + "vh";
+    });
 
     function setLayoutColor(data: keyof Layout, value: string) {
       const index = layout.layoutMode === "vertical" ? 1 : 0;
       (layout[data] as string[])[index] = value;
-    }
-
-    function setMenuCollapse(data: boolean) {
-      layout.menuCollapse = data;
-    }
-
-    function setLayoutMode(data: "classic" | "vertical") {
-      layout.layoutMode = data;
     }
 
     function getColorVal(name: keyof Layout): string {
@@ -73,9 +85,21 @@ export default defineStore(
         return colors[0];
       }
     }
+
+    function setMenuCollapse(data: boolean) {
+      layout.menuCollapse = data;
+    }
+
+    function setLayoutMode(data: "classic" | "vertical") {
+      layout.layoutMode = data;
+    }
+
     return {
       layout,
       menuWidth,
+      menuHeight,
+      elHeaderHeight,
+      elMainHeight,
       setLayoutColor,
       setLayoutMode,
       getColorVal,

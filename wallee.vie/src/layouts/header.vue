@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome suspension">
+  <div class="welcome">
     <el-image class="welcome-img" :src="logo" style="width: 62px; height: 62px">
     </el-image>
     <div class="welcome-text">
@@ -43,12 +43,9 @@ let margin = computed(() =>
   border-radius: 6px;
   display: flex;
   align-items: center;
-  padding: 15px 20px !important;
-  box-shadow: 0 0 30px 0 rgba(82, 63, 105, 0.05);
+  padding: 20px 20px !important;
   margin-top: var(--ba-main-space);
   margin-bottom: 0;
-  margin-right: v-bind(margin);
-  margin-left: v-bind(margin);
 
   .welcome-img {
     height: 100px;

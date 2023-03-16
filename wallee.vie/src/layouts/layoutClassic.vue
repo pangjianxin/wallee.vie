@@ -1,18 +1,11 @@
 <template>
   <el-container>
-    <el-header
-      style="
-        height: 110px;
-        position: relative;
-        padding: 0;
-        margin: 0 16px 0 16px;
-      "
-    >
+    <el-header class="ba-el-header">
       <Header></Header>
     </el-header>
     <el-container>
       <Aside></Aside>
-      <el-main>
+      <el-main class="ba-el-main">
         <div class="nav-bar">
           <navTabs />
           <navMenu />
@@ -90,5 +83,13 @@ const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
       -webkit-transition: all 0.2s;
     }
   }
+}
+.ba-el-header {
+  height: v-bind("theme.elHeaderHeight") !important;
+}
+.ba-el-main {
+  height: v-bind("theme.elMainHeight") !important;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>

@@ -1,9 +1,11 @@
 <template>
   <el-container>
     <Aside></Aside>
-    <el-container class="content-wrapper">
-      <Header></Header>
-      <el-main>
+    <el-container>
+      <el-header class="ba-el-header">
+        <Header></Header>
+      </el-header>
+      <el-main class="ba-el-main">
         <div class="nav-bar">
           <navTabs />
           <navMenu />
@@ -34,11 +36,6 @@ const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
 const theme = useThemeStore();
 </script>
 <style scoped lang="scss">
-.content-wrapper {
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
 .nav-bar {
   display: flex;
   align-items: center;
@@ -86,5 +83,14 @@ const theme = useThemeStore();
       -webkit-transition: all 0.2s;
     }
   }
+}
+
+.ba-el-header {
+  height: v-bind("theme.elHeaderHeight") !important;
+}
+.ba-el-main {
+  height: v-bind("theme.elMainHeight") !important;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>
