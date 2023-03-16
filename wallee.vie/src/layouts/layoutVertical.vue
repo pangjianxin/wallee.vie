@@ -1,9 +1,9 @@
 <template>
   <el-container>
-    <Aside></Aside>
+    <layoutAside></layoutAside>
     <el-container>
       <el-header class="ba-el-header">
-        <Header></Header>
+        <layoutHeader></layoutHeader>
       </el-header>
       <el-main class="ba-el-main">
         <div class="nav-bar">
@@ -25,15 +25,17 @@
   </el-container>
 </template>
 <script lang="ts" setup>
-import Aside from "/@/layouts/aside/aside.vue";
+import layoutAside from "/@/layouts/aside/aside.vue";
 import useTagStore from "/@/store/modules/useTagsStore";
-import Header from "./header.vue";
+import layoutHeader from "./header.vue";
 import { storeToRefs } from "pinia";
+import { watch } from "vue";
 import navTabs from "/@/layouts/navBar/navTabs.vue";
 import navMenu from "/@/layouts/navBar/navMenus.vue";
 import useThemeStore from "/@/store/modules/useThemeStore";
 const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
 const theme = useThemeStore();
+
 </script>
 <style scoped lang="scss">
 .nav-bar {

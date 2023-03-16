@@ -1,10 +1,10 @@
 <template>
   <el-container>
     <el-header class="ba-el-header">
-      <Header></Header>
+      <layoutHeader></layoutHeader>
     </el-header>
     <el-container>
-      <Aside></Aside>
+      <layoutAside></layoutAside>
       <el-main class="ba-el-main">
         <div class="nav-bar">
           <navTabs />
@@ -25,9 +25,9 @@
   </el-container>
 </template>
 <script lang="ts" setup>
-import Aside from "/@/layouts/aside/aside.vue";
+import layoutAside from "/@/layouts/aside/aside.vue";
 import useTagStore from "/@/store/modules/useTagsStore";
-import Header from "./header.vue";
+import layoutHeader from "./header.vue";
 import { storeToRefs } from "pinia";
 import useThemeStore from "/@/store/modules/useThemeStore";
 import navTabs from "/@/layouts/navBar/navTabs.vue";

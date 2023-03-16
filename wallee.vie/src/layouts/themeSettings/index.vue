@@ -49,9 +49,16 @@
   <el-form>
     <el-form-item label="系统主体颜色">
       <el-color-picker
-        model-value="red"
+        :model-value="theme.getColorVal('baseBackground')"
         show-alpha
-        :predefine="['#F56C6C', '#409EFF', '#67C23A', '#E6A23C', '#0A0A0A']"
+        :predefine="[
+          '#2d63dd',
+          '#F56C6C',
+          '#409EFF',
+          '#67C23A',
+          '#E6A23C',
+          '#0A0A0A',
+        ]"
         @update:model-value="
           changeLayoutColor($event as string, 'baseBackground')
         "
@@ -59,7 +66,7 @@
     </el-form-item>
     <el-form-item label="系统字体颜色">
       <el-color-picker
-        model-value="red"
+        :model-value="theme.getColorVal('baseTextColor')"
         show-alpha
         :predefine="['#F56C6C', '#409EFF', '#67C23A', '#E6A23C', '#0A0A0A']"
         @update:model-value="
@@ -69,7 +76,7 @@
     </el-form-item>
     <el-form-item label="系统导航图标色">
       <el-color-picker
-        model-value="red"
+        :model-value="theme.getColorVal('navMenuTabColor')"
         show-alpha
         :predefine="['#F56C6C', '#409EFF', '#67C23A', '#E6A23C', '#0A0A0A']"
         @update:model-value="
@@ -79,7 +86,7 @@
     </el-form-item>
     <el-form-item label="系统导航背景色">
       <el-color-picker
-        model-value="red"
+        :model-value="theme.getColorVal('navMenuBackground')"
         show-alpha
         :predefine="['#F56C6C', '#409EFF', '#67C23A', '#E6A23C', '#0A0A0A']"
         @update:model-value="

@@ -54,39 +54,39 @@ const theme = useThemeStore();
 
 const menus: MenuItem[] = reactive<MenuItem[]>([]);
 
-for (let i = 0; i < 22; i++) {
-  menus.push({ icon: "User", path: "/user", title: "用户管理" });
-}
+watchEffect(() => {
+  generatedRoutes
+    .filter((it) => it.meta?.visible === true)
+    .sort(
+      (prev, next) =>
+        (prev.meta?.order as number) - (next.meta?.order as number)
+    )
+    .forEach((item, index) => {
+      menus.push({
+        icon: item.meta?.icon as string,
+        path: item.path,
+        title: item.meta?.title as string,
+      });
+    });
+});
 
-// watchEffect(() => {
-//   generatedRoutes
-//     .filter((it) => it.meta?.visible === true)
-//     .sort(
-//       (prev, next) =>
-//         (prev.meta?.order as number) - (next.meta?.order as number)
-//     )
-//     .forEach((item, index) => {
-//       menus.push({
-//         icon: item.meta?.icon as string,
-//         path: item.path,
-//         title: item.meta?.title as string,
-//       });
-//     });
-// });
 const verticalMenusScrollbarHeight = computed(() => {
-  let menuTopBarHeight = 50;
-  if (theme.layout.layoutMode == "classic") {
-    return "calc(100vh - " + (32 + menuTopBarHeight) + "px)";
-  } else {
-    return "calc(100vh - " + menuTopBarHeight + "px)";
+  switch (theme.layout.layoutMode) {
+    case "classic":
+      return `${100 - 4 - theme.layout.elHeaderHeight - 1}vh`;
+    case "vertical":
+      return "90vh";
+    default:
+      return "100vh";
   }
 });
 </script>
 
 <style>
 .vertical-menus-scrollbar {
-  height: v-bind(verticalMenusScrollbarHeight);
+  height: v-bind("verticalMenusScrollbarHeight");
   background-color: v-bind('theme.getColorVal("menuBackground")');
+  margin-bottom: 2vh;
 }
 .layouts-menu-vertical {
   border: 0;

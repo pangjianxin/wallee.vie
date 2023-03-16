@@ -58,9 +58,9 @@ export default defineStore(
     let menuHeight = computed(() => {
       switch (layout.layoutMode) {
         case "classic":
-          return `${96 - layout.elHeaderHeight}vh`;
+          return `${100 - layout.elHeaderHeight}vh`;
         case "vertical":
-          return `90vh`;
+          return `100vh`;
       }
     });
 
@@ -73,7 +73,7 @@ export default defineStore(
     });
 
     function setLayoutColor(data: keyof Layout, value: string) {
-      const index = layout.layoutMode === "vertical" ? 1 : 0;
+      const index = layout.isDark === true ? 1 : 0;
       (layout[data] as string[])[index] = value;
     }
 

@@ -13,9 +13,12 @@ import layoutClassic from "./layoutClassic.vue";
 const route = useRoute();
 const theme = useThemeStore();
 let viewComponent = computed(() => {
-  return theme.layout.layoutMode === "vertical"
-    ? layoutVertical
-    : layoutClassic;
+  switch (theme.layout.layoutMode) {
+    case "classic":
+      return layoutClassic;
+    case "vertical":
+      return layoutVertical;
+  }
 });
 </script>
 
