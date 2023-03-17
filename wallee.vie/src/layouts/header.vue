@@ -43,7 +43,7 @@ let margin = computed(() =>
   border-radius: 6px;
   display: flex;
   align-items: center;
-  padding: 20px 20px !important;
+  padding: var(--ba-main-space) var(--ba-main-space);
   margin-top: var(--ba-main-space);
   margin-bottom: 0;
 

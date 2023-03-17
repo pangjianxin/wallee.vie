@@ -86,6 +86,7 @@ const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
 }
 .ba-el-header {
   height: v-bind("theme.elHeaderHeight") !important;
+  padding: 0 var(--ba-main-space) !important;
 }
 .ba-el-main {
   height: v-bind("theme.elMainHeight") !important;
