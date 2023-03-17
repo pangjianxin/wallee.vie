@@ -90,6 +90,7 @@ const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
 }
 .ba-el-main {
   height: v-bind("theme.elMainHeight") !important;
+  padding: var(--ba-main-space) var(--ba-main-space) !important;
   overflow-y: auto;
   overflow-x: hidden;
 }

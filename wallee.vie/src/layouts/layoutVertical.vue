@@ -35,7 +35,6 @@ import navMenu from "/@/layouts/navBar/navMenus.vue";
 import useThemeStore from "/@/store/modules/useThemeStore";
 const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
 const theme = useThemeStore();
-
 </script>
 <style scoped lang="scss">
 .nav-bar {
@@ -89,9 +88,11 @@ const theme = useThemeStore();
 
 .ba-el-header {
   height: v-bind("theme.elHeaderHeight") !important;
+  padding: 0 var(--ba-main-space) !important;
 }
 .ba-el-main {
   height: v-bind("theme.elMainHeight") !important;
+  padding: var(--ba-main-space) var(--ba-main-space) !important;
   overflow-y: auto;
   overflow-x: hidden;
 }

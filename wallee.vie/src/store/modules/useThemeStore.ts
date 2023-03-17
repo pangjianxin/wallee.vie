@@ -23,7 +23,7 @@ export default defineStore(
       // 侧边菜单顶栏背景色
       menuTopBarBackground: ["#fcfcfc", "#1d1e1f"],
       // 侧边菜单宽度(展开时)，单位px
-      menuWidth: 180,
+      menuWidth: 15,
       // 侧边菜单项默认图标
       menuDefaultIcon: "Minus",
       // 是否水平折叠收起菜单
@@ -52,7 +52,7 @@ export default defineStore(
 
     let menuWidth = computed(() => {
       // 菜单是否折叠
-      return layout.menuCollapse ? "64px" : layout.menuWidth + "px";
+      return layout.menuCollapse ? "5vmax" : layout.menuWidth + "vmin";
     });
 
     let menuHeight = computed(() => {
@@ -109,7 +109,7 @@ export default defineStore(
   {
     persist: {
       key: STORE_THEME,
-      storage: window.sessionStorage,
+      //storage: window.sessionStorage,
     },
   }
 );

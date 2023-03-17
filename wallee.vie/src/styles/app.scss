@@ -29,6 +29,27 @@
   justify-content: space-between;
 }
 
+/* 文字单行省略号 */
+.sle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 文字多行省略号 */
+.mle {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* 文字多了自動換行 */
+.break-word {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
 .default-main {
   margin: var(--ba-main-space) var(--ba-main-space) 60px var(--ba-main-space);
 }
@@ -94,4 +115,3 @@
     }
   }
 }
-

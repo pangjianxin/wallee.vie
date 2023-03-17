@@ -1,17 +1,16 @@
 <template>
   <div class="welcome">
-    <el-image class="welcome-img" :src="logo" style="width: 62px; height: 62px">
-    </el-image>
+    <el-image class="welcome-img" :src="logo"> </el-image>
     <div class="welcome-text">
-      <div class="welcome-title">
+      <div class="welcome-title sle">
         {{ appName }}
       </div>
-      <div class="welcome-note">
+      <div class="welcome-note sle">
         {{ appEngName }}
       </div>
     </div>
     <div style="flex: auto"></div>
-    <div class="welcome-suport">
+    <div class="welcome-suport sle">
       <span>
         <el-icon>
           <Phone></Phone>
@@ -24,7 +23,7 @@
 
 <script setup lang="ts">
 import useThemeStore from "/@/store/modules/useThemeStore";
-import logo from "/@/assets/img/logo_bg_w.png";
+import logo from "/@/assets/img/logo.png";
 import { computed } from "vue";
 const appName = import.meta.env["VITE_APP_NAME"];
 const appEngName = import.meta.env["VITE_APP_ENG_NAME"];
@@ -33,14 +32,14 @@ const theme = useThemeStore();
 
 //TODO:can we use the variable in /@/styles/ver.scss instead of constant?
 let margin = computed(() =>
-  theme.layout.layoutMode == "vertical" ? "16px" : "0px"
+  theme.layout.layoutMode == "vertical" ? "1vmin" : "0vmin"
 );
 </script>
 
 <style lang="scss" scoped>
 .welcome {
   background: v-bind('theme.getColorVal("baseBackground")');
-  border-radius: 6px;
+  border-radius: 0.5vmin;
   display: flex;
   align-items: center;
   padding: var(--ba-main-space) var(--ba-main-space);
@@ -48,8 +47,8 @@ let margin = computed(() =>
   margin-bottom: 0;
 
   .welcome-img {
-    height: 100px;
-    margin-right: 10px;
+    height: 6vh;
+    margin-right: 2vmin;
     user-select: none;
   }
   .welcome-text {
