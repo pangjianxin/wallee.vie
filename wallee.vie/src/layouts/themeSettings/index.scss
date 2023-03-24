@@ -98,7 +98,7 @@
 			}
 		}
 	}
-	.layout-transverse {
+	.layout-horizontal {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -107,19 +107,6 @@
 		}
 		.layout-content {
 			height: 67%;
-		}
-	}
-	.layout-columns {
-		display: flex;
-		justify-content: space-between;
-		.layout-dark {
-			width: 14%;
-		}
-		.layout-light {
-			width: 17%;
-		}
-		.layout-content {
-			width: 55%;
 		}
 	}
 }

@@ -2,7 +2,7 @@
 import { RouteRecordRaw, RouteLocationNormalized } from "vue-router";
 
 export interface Layout {
-  layoutMode: "classic" | "vertical";
+  layoutMode: "classic" | "vertical" | "horizontal";
   isDark: boolean;
   menuWidth: number;
   menuCollapse: boolean;

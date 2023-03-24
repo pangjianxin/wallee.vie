@@ -90,7 +90,7 @@ export default defineStore(
       layout.menuCollapse = data;
     }
 
-    function setLayoutMode(data: "classic" | "vertical") {
+    function setLayoutMode(data: "classic" | "vertical" | "horizontal") {
       layout.layoutMode = data;
     }
 

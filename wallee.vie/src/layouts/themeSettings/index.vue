@@ -41,6 +41,21 @@
         </el-icon>
       </div>
     </el-tooltip>
+    <el-tooltip effect="dark" content="横向" placement="top" :show-after="200">
+      <div
+        :class="[
+          'layout-item layout-horizontal',
+          theme.$state.layout.layoutMode == 'horizontal' ? 'is-active' : '',
+        ]"
+        @click="changeLayout('horizontal')"
+      >
+        <div class="layout-dark"></div>
+        <div class="layout-content"></div>
+        <el-icon v-if="theme.$state.layout.layoutMode == 'horizontal'">
+          <CircleCheckFilled />
+        </el-icon>
+      </div>
+    </el-tooltip>
   </div>
   <el-divider class="divider" content-position="center">
     <el-icon><Picture /></el-icon>
@@ -104,7 +119,7 @@ import useThemeStore from "/@/store/modules/useThemeStore";
 const theme = useThemeStore();
 
 // 切换布局方式
-const changeLayout = (val: "vertical" | "classic") => {
+const changeLayout = (val: "vertical" | "classic" | "horizontal") => {
   theme.setLayoutMode(val);
 };
 
