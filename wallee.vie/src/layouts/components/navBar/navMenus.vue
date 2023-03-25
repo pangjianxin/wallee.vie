@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import useThemeStore from "../../store/modules/useThemeStore";
+import useThemeStore from "/@/store/modules/useThemeStore";
 import imgurl from "/@/assets/img/avatar.png";
 import {
   Notification,

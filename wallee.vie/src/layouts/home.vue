@@ -7,10 +7,10 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { computed } from "vue";
-import useThemeStore from "../store/modules/useThemeStore";
-import layoutVertical from "./layoutVertical.vue";
-import layoutClassic from "./layoutClassic.vue";
-import layoutHorizontal from "./layoutHorizontal.vue";
+import useThemeStore from "/@/store/modules/useThemeStore";
+import layoutVertical from "/@/layouts/layoutVertical/index.vue";
+import layoutClassic from "/@/layouts/layoutClassic/index.vue";
+import layoutHorizontal from "/@/layouts/layoutHorizontal/index.vue";
 
 const route = useRoute();
 const theme = useThemeStore();

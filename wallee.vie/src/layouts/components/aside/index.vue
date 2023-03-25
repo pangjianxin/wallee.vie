@@ -34,7 +34,7 @@ export default defineComponent({
 .layout-aside-vertical {
   background: var(--ba-bg-color-overlay);
   margin: var(--ba-main-space) 0 var(--ba-main-space) var(--ba-main-space);
-  height: 100vh;
+  height: v-bind("theme.menuHeight");
   overflow: hidden;
   transition: width 0.3s ease;
   width: v-bind("theme.menuWidth");

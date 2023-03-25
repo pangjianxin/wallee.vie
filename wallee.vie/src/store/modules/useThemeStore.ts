@@ -36,7 +36,7 @@ export default defineStore(
       baseBackground: ["#F56C6C", "#F56C6C"],
       baseTextColor: ["#FFFFFF", "#FFFFFF"],
       elHeaderHeight: 10,
-      elMainHeight: 90,
+      elMainHeight: 89,
       /* 顶栏 */
       // 顶栏背景色
       navMenuBackground: ["#FFFFFF", "#FFFFFF"],
@@ -58,9 +58,9 @@ export default defineStore(
     let menuHeight = computed(() => {
       switch (layout.layoutMode) {
         case "classic":
-          return `${100 - layout.elHeaderHeight}vh`;
+          return `${98 - layout.elHeaderHeight}vh`;
         case "vertical":
-          return `100vh`;
+          return `98vh`;
       }
     });
 

@@ -1,40 +1,40 @@
 <template>
   <el-container>
-    <layoutAside></layoutAside>
-    <el-container>
-      <el-header class="ba-el-header">
-        <layoutHeader></layoutHeader>
-      </el-header>
-      <el-main class="ba-el-main">
-        <div class="nav-bar">
-          <navTabs />
-          <navMenu />
-        </div>
-        <router-view>
-          <template #default="{ Component, route }">
-            <transition name="move" mode="out-in">
-              <keep-alive v-if="isEnabled" :include="cachedComponentsName">
-                <component :is="Component" :key="route.path"></component>
-              </keep-alive>
-              <component v-else :is="Component" :key="route.path"> </component>
-            </transition>
-          </template>
-        </router-view>
-      </el-main>
-    </el-container>
+    <el-header class="ba-el-header">
+      <layoutHeader></layoutHeader>
+    </el-header>
+    <el-main class="ba-el-main">
+      <el-row justify="center">
+        <el-col :lg="16" :sm="24">
+          <div class="nav-bar">
+            <navTabs />
+            <navMenu />
+          </div>
+          <router-view>
+            <template #default="{ Component, route }">
+              <transition name="move" mode="out-in">
+                <keep-alive v-if="isEnabled" :include="cachedComponentsName">
+                  <component :is="Component" :key="route.path"></component>
+                </keep-alive>
+                <component v-else :is="Component" :key="route.path">
+                </component>
+              </transition>
+            </template>
+          </router-view>
+        </el-col>
+      </el-row>
+    </el-main>
   </el-container>
 </template>
 <script lang="ts" setup>
-import layoutAside from "/@/layouts/aside/aside.vue";
 import useTagStore from "/@/store/modules/useTagsStore";
-import layoutHeader from "./header.vue";
+import layoutHeader from "/@/layouts/components/header.vue";
 import { storeToRefs } from "pinia";
-import { watch } from "vue";
-import navTabs from "/@/layouts/navBar/navTabs.vue";
-import navMenu from "/@/layouts/navBar/navMenus.vue";
 import useThemeStore from "/@/store/modules/useThemeStore";
-const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
+import navTabs from "/@/layouts/components/navBar/navTabs.vue";
+import navMenu from "/@/layouts/components/navBar/navMenus.vue";
 const theme = useThemeStore();
+const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
 </script>
 <style scoped lang="scss">
 .nav-bar {
@@ -85,7 +85,6 @@ const theme = useThemeStore();
     }
   }
 }
-
 .ba-el-header {
   height: v-bind("theme.elHeaderHeight") !important;
   padding: 0 var(--ba-main-space) !important;

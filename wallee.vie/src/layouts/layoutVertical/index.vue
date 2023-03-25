@@ -1,10 +1,10 @@
 <template>
   <el-container>
-    <el-header class="ba-el-header">
-      <layoutHeader></layoutHeader>
-    </el-header>
+    <layoutAside></layoutAside>
     <el-container>
-      <layoutAside></layoutAside>
+      <el-header class="ba-el-header">
+        <layoutHeader></layoutHeader>
+      </el-header>
       <el-main class="ba-el-main">
         <div class="nav-bar">
           <navTabs />
@@ -25,15 +25,16 @@
   </el-container>
 </template>
 <script lang="ts" setup>
-import layoutAside from "/@/layouts/aside/aside.vue";
+import layoutAside from "/@/layouts/components/aside/index.vue";
 import useTagStore from "/@/store/modules/useTagsStore";
-import layoutHeader from "./header.vue";
+import layoutHeader from "/@/layouts/components/header.vue";
 import { storeToRefs } from "pinia";
+import navTabs from "/@/layouts/components/navBar/navTabs.vue";
+import navMenu from "/@/layouts/components/navBar/navMenus.vue";
 import useThemeStore from "/@/store/modules/useThemeStore";
-import navTabs from "/@/layouts/navBar/navTabs.vue";
-import navMenu from "/@/layouts/navBar/navMenus.vue";
-const theme = useThemeStore();
+
 const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
+const theme = useThemeStore();
 </script>
 <style scoped lang="scss">
 .nav-bar {
@@ -84,6 +85,7 @@ const { isEnabled, cachedComponentsName } = storeToRefs(useTagStore());
     }
   }
 }
+
 .ba-el-header {
   height: v-bind("theme.elHeaderHeight") !important;
   padding: 0 var(--ba-main-space) !important;
