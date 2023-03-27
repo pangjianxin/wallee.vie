@@ -8,7 +8,7 @@ export default defineStore(
   "appTheme",
   () => {
     const layout: Layout = reactive({
-      layoutMode: "vertical",
+      layoutMode: "classic",
       // 是否暗黑模式
       isDark: false,
       /* 侧边菜单 */
@@ -22,7 +22,7 @@ export default defineStore(
       menuActiveColor: ["#409eff", "#3375b9"],
       // 侧边菜单顶栏背景色
       menuTopBarBackground: ["#fcfcfc", "#1d1e1f"],
-      // 侧边菜单宽度(展开时)，单位px
+      // 侧边菜单宽度(展开时)，单位vmin
       menuWidth: 15,
       // 侧边菜单项默认图标
       menuDefaultIcon: "Minus",
@@ -52,7 +52,7 @@ export default defineStore(
 
     let menuWidth = computed(() => {
       // 菜单是否折叠
-      return layout.menuCollapse ? "5vmax" : layout.menuWidth + "vmin";
+      return layout.menuCollapse ? "64px" : layout.menuWidth + "vmin";
     });
 
     let menuHeight = computed(() => {
@@ -90,7 +90,7 @@ export default defineStore(
       layout.menuCollapse = data;
     }
 
-    function setLayoutMode(data: "classic" | "vertical" | "horizontal") {
+    function setLayoutMode(data: "classic" | "vertical") {
       layout.layoutMode = data;
     }
 

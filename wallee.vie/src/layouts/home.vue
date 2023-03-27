@@ -10,7 +10,6 @@ import { computed } from "vue";
 import useThemeStore from "/@/store/modules/useThemeStore";
 import layoutVertical from "/@/layouts/layoutVertical/index.vue";
 import layoutClassic from "/@/layouts/layoutClassic/index.vue";
-import layoutHorizontal from "/@/layouts/layoutHorizontal/index.vue";
 
 const route = useRoute();
 const theme = useThemeStore();
@@ -21,8 +20,6 @@ let viewComponent = computed(() => {
       return layoutClassic;
     case "vertical":
       return layoutVertical;
-    case "horizontal":
-      return layoutHorizontal;
   }
 });
 </script>

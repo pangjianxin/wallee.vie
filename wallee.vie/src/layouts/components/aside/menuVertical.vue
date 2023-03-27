@@ -86,7 +86,7 @@ const verticalMenusScrollbarHeight = computed(() => {
 .vertical-menus-scrollbar {
   height: v-bind("verticalMenusScrollbarHeight");
   background-color: v-bind('theme.getColorVal("menuBackground")');
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
 }
 .layouts-menu-vertical {
   border: 0;

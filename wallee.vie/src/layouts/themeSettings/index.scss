@@ -98,15 +98,4 @@
 			}
 		}
 	}
-	.layout-horizontal {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		.layout-dark {
-			height: 20%;
-		}
-		.layout-content {
-			height: 67%;
-		}
-	}
 }
