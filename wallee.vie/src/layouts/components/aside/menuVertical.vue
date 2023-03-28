@@ -73,9 +73,9 @@ watchEffect(() => {
 const verticalMenusScrollbarHeight = computed(() => {
   switch (theme.layout.layoutMode) {
     case "classic":
-      return `${100 - 4 - theme.layout.elHeaderHeight - 1}vh`;
+      return `${98 - 4 - theme.layout.elHeaderHeight - 1}vh`;
     case "vertical":
-      return "90vh";
+      return `${98 - 4 - 1}vh`;
     default:
       return "100vh";
   }
