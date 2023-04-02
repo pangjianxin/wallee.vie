@@ -332,10 +332,16 @@ export const request = <T>(
       }
     } catch (error) {
       if (error instanceof ApiError) {
+        console.log(error.message);
+        console.log(error.body);
+        console.log(error.status);
         ElNotification({
           type: "error",
           title: "提示",
-          message: error.message,
+          message:
+            error.body.error.details ??
+            error.body.error.message ??
+            error.body.error_description,
         });
         if (error.status === 401) {
           window.location.href = "/login";

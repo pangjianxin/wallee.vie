@@ -8,7 +8,7 @@ import useTagsStore from "/@/store/modules/useTagsStore";
 import { setupLayouts } from "virtual:generated-layouts";
 import generatedRoutes from "~pages";
 import { showError } from "/@/utils/app";
-import useOidcStore from "/@/store/modules/useoidcStore";
+import useOidcStore from "/@/store/modules/useOidcStore";
 
 export const routes = setupLayouts(generatedRoutes);
 
@@ -19,7 +19,7 @@ export const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const { isTokenValid } = useOidcStore();
-  if (!isTokenValid && to.path != "/sys/login" && to.meta?.requiredAuth) {
+  if (!isTokenValid && to.path != "/login" && to.meta?.requiredAuth) {
     showError("您访问的页面需要授权，现已转到登录页面");
     next("/login");
   } else {
