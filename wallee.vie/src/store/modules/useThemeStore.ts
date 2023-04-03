@@ -43,7 +43,7 @@ export default defineStore(
       // 顶栏悬停时背景色
       navMenuHoverBackground: ["#E5EAF3", "#18222c"],
       // 顶栏文字色/图标
-      navMenuTabColor: ["#F56C6C", "#CFD3DC"],
+      navMenuTabColor: ["#000000", "#CFD3DC"],
       // 顶栏激活项背景色
       navMenuTabActiveBackground: ["#ffffff", "#1d1e1f"],
       // 顶栏激活项文字色
